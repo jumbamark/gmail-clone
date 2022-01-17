@@ -1,0 +1,25 @@
+.emailList {
+  flex: 1;
+  overflow: scroll;
+}
+
+.emailList-settings {
+  top: 0;
+  position: sticky;
+  /* We have a sticky element - we dont wanna get overwritten by anything */
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid whitesmoke;
+  background-color: white;
+  padding: 10px;
+}
+
+.emailList-sections {
+  top: 0;
+  position: sticky;
+  z-index: 999;
+  display: flex;
+  background-color: white;
+  border-bottom: 1px solid whitesmoke;
+}

@@ -1,3 +1,9 @@
+.sidebar {
+  flex: 0.3; /* sidebar should always take up 30% */
+  max-width: 300px;
+  padding-right: 20px;
+}
+
 .sidebar-compose {
   margin-top: 15px !important;
   margin-left: 10px !important;
