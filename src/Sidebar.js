@@ -13,11 +13,19 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PersonIcon from "@mui/icons-material/Person";
 import DuoIcon from "@mui/icons-material/Duo";
 import PhoneIcon from "@mui/icons-material/Phone";
+import {useDispatch} from "react-redux";
+import {openSendMessage} from "./features/mailSlice";
 
 function Sidebar() {
+  const dispatch = useDispatch();
+
   return (
     <div className="sidebar">
-      <Button className="sidebar-compose" startIcon={<AddIcon fontSize="large" />}>
+      <Button
+        className="sidebar-compose"
+        startIcon={<AddIcon fontSize="large" />}
+        onClick={() => dispatch(openSendMessage())}
+      >
         Compose
       </Button>
 
@@ -49,3 +57,6 @@ function Sidebar() {
 export default Sidebar;
 
 // Make it so that you can actually pass a prop to the sidebar and then it would be selected
+
+// In order to dispatch an action into redux we use useDispatch
+// Have it so that if I click on the compose button then we call the openSendMessage action which changes the initialState value in mailSlice
