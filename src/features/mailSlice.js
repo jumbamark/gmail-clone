@@ -2,7 +2,8 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
   sendMessageIsOpen: false,
-  // status: "idle",
+  // piece of state that will have the email contents pushed through to the back
+  selectedMail: null,
 };
 
 export const mailSlice = createSlice({
@@ -18,13 +19,18 @@ export const mailSlice = createSlice({
     closeSendMessage: (state) => {
       state.sendMessageIsOpen = false;
     },
+    selectMail: (state, action) => {
+      // the selectedMail becomes whatever you passed inside the payload when the action is fired off
+      state.selectedMail = action.payload;
+    },
   },
 });
 
-export const {openSendMessage, closeSendMessage} = mailSlice.actions;
+export const {openSendMessage, closeSendMessage, selectMail} = mailSlice.actions;
 
 // selectors - allows us to pull the mail from memo
 export const selectSendMessageIsOpen = (state) => state.mail.sendMessageIsOpen;
+export const selectOpenMail = (state) => state.mail.selectedMail;
 
 export default mailSlice.reducer;
 
