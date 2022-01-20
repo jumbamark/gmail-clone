@@ -17,9 +17,12 @@ import React from "react";
 import {useNavigate} from "react-router-dom";
 import "./Mail.css";
 import LabelImportantIcon from "@mui/icons-material/LabelImportant";
+import {useSelector} from "react-redux";
+import {selectOpenMail} from "./features/mailSlice";
 
 function Mail() {
   const navigate = useNavigate();
+  const selectedMail = useSelector(selectOpenMail);
 
   return (
     <div className="mail">
@@ -79,14 +82,18 @@ function Mail() {
 
       <div className="mail-body">
         <div className="mail-bodyHeader">
-          <h2>Subject</h2>
+          {/* <h2>Subject</h2> */}
+          <h2>{selectedMail?.subject}</h2>
           <LabelImportantIcon className="mail-important" />
-          <p>Title</p>
-          <p className="mail-time">10pm</p>
+          {/* <p>Title</p> */}
+          <p>{selectedMail?.title}</p>
+          {/* <p className="mail-time">10pm</p> */}
+          <p className="mail-time">{selectedMail?.time}</p>
         </div>
 
         <div className="mail-message">
-          <p>This is a message</p>
+          {/* <p>This is a message</p> */}
+          <p>{selectedMail?.description}</p>
         </div>
       </div>
     </div>
@@ -94,3 +101,7 @@ function Mail() {
 }
 
 export default Mail;
+
+// populate the contents of the mail based on what is inside the state
+// use the selector we created to get the mail
+// Replace whatever we had with selectedMail the optional chaining bec it could be undefined for whatever reason
