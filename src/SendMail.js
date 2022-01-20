@@ -5,6 +5,8 @@ import {Button} from "@mui/material";
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {closeSendMessage} from "./features/mailSlice";
+import {db} from "./firebase";
+import {collection, addDoc, serverTimestamp} from "firebase/firestore";
 
 function SendMail() {
   const dispatch = useDispatch();
@@ -17,6 +19,18 @@ function SendMail() {
 
   const onSubmit = (formData) => {
     console.log(formData);
+
+    // Add a new document with a generated id.
+    const docRef = addDoc(collection(db, "emails"), {
+      to: formData.to,
+      subject: formData.subject,
+      message: formData.message,
+      timestamp: serverTimestamp(),
+    });
+    console.log(docRef);
+
+    // Once I send the message I wanna close that form
+    dispatch(closeSendMessage());
   };
 
   return (
