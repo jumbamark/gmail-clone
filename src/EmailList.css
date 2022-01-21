@@ -3,6 +3,11 @@
   overflow: scroll;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.emailList::-webkit-scrollbar {
+  display: none;
+}
+
 .emailList-settings {
   top: 0;
   position: sticky;
@@ -22,4 +27,9 @@
   display: flex;
   background-color: white;
   border-bottom: 1px solid whitesmoke;
+}
+
+.emailList-list {
+  /* will always reach the bottom */
+  padding-bottom: 20%;
 }
