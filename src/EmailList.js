@@ -14,13 +14,14 @@ import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import Section from "./Section";
 import EmailRow from "./EmailRow";
 import {db} from "./firebase";
-import {collection, onSnapshot, orderBy} from "firebase/firestore";
+import {collection, onSnapshot, orderBy, query} from "firebase/firestore";
 
 function EmailList() {
   const [emails, setEmails] = useState([]);
 
   useEffect(() => {
-    onSnapshot(collection(db, "emails"), orderBy("timestamp", "desc"), (snapshot) =>
+     const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
+    onSnapshot(q, (snapshot) =>
       setEmails(
         snapshot.docs.map((doc) => ({
           id: doc.id,
